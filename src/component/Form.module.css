@@ -1,0 +1,34 @@
+
+.section{
+    width: auto;
+    height: auto;
+    position: relative;
+}
+.form{
+    width: 350px;
+    height: auto;
+    padding: 3rem 4rem;
+    background-color: var(--color-light--grey);
+    border-radius: 2rem;
+}
+
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    justify-content: start;
+}
+
+.button{
+    width: 120px;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 3rem;
+    background-color: var(--color-white--1);
+    color: var(--color-deep--grey);
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 5rem 0;
+}

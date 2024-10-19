@@ -1,0 +1,73 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background:var(--color-dark--0);
+    position: relative;
+}
+
+.logo{
+    position: fixed;
+    top: 3%;
+    left: 2%;
+    z-index: 2;
+  }
+
+.Ellipse12{
+    position: fixed;
+    width: 506.86px;
+    height: 507.35px;
+    right: -70%;
+    top: 50.7px;
+    background: linear-gradient(180deg, rgba(231, 45, 45, 0.25) 0%, rgba(0, 133, 255, 0) 79.07%);
+    transform: rotate(-25.21deg);
+    border-radius: 100%;
+}
+.Ellipse13{
+    position: fixed;
+    width: 324px;
+    height: 324.38px;
+    left: 0;
+    top: 271.55px;
+    background: linear-gradient(180deg, rgba(252, 210, 210, 0.31) 0%, rgba(226, 0, 0, 0) 76.29%);
+    transform: rotate(133.32deg);
+    border-radius: 100%;
+}
+.Ellipse14{
+position: fixed;
+width: 244.42px;
+height: 246.94px;
+left: -142.39px;
+top: 495.51px;
+background: linear-gradient(195.03deg, rgba(130, 11, 11, 0.59) 10.58%, rgba(29, 40, 142, 0) 75.89%);
+transform: rotate(-55.6deg);
+border-radius: 100%;
+}
+
+.contents{
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+}
+.flexContents{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flexs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.arrowContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#fff ;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
