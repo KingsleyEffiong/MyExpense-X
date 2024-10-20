@@ -5,7 +5,7 @@
 
 .transaction{
     background-image: linear-gradient(to right, var(--color-dark--0), var(--color-brown--2));
-    width: 360px;
+    width: auto;
     height: 77px;
     border-radius: 4rem;
     display: flex;

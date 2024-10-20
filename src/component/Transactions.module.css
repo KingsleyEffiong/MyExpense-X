@@ -1,6 +1,6 @@
 .container {
     background-image: linear-gradient(to bottom right, var(--color-brown--2), var(--color-dark--0));
-    width: 370px;
+    width: auto;
     height: 317px;
     margin: 0 auto;
     position: relative;
