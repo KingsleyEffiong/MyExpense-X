@@ -1,0 +1,20 @@
+.nav{
+    width: 100%;
+    height: 7rem;
+    background: inherit;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingContainer{
+    background-color: var(--color-light--grey);
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    right: 3%;
+    border-radius: 100%;
+}

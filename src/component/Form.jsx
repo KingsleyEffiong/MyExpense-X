@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../UI/Button'
 import styles from './Form.module.css'
 import { useProvider } from './PostProviders'
@@ -26,7 +26,9 @@ function Form() {
                 <input type="text" name="income" id="income" placeholder='Income per month' value={income} onChange={(e) => dispatch({type:'INCOME', payload:e.target.value})}/>
             </div>
         </div>
+        <Link to='/dashboard'>
             <Button className={styles.button}>Let&apos;s go</Button>
+        </Link>
         </form>
     )
 }

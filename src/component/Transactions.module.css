@@ -1,0 +1,28 @@
+.container {
+    background-image: linear-gradient(to bottom right, var(--color-brown--2), var(--color-dark--0));
+    width: 370px;
+    height: 317px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 4rem;
+}
+.ul{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    list-style: none;
+    gap: 5rem;
+}
+.listItem{
+    color: var(--color-white--1);
+    display: flex;
+    align-items: center;
+   gap: 1rem;
+}
+
+.column{
+    font-size: 1.8rem;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+}

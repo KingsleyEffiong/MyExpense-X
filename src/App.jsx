@@ -2,11 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcomepage from "./pages/Welcomepage";
 import LoadingScreen from "./component/LoadingScreen";
 import Signup from "./pages/Signup";
-import { PostProviders, useProvider } from "./component/PostProviders"; // Import the provider
+import { PostProviders, useProvider } from "./component/PostProviders"; 
 import { useEffect } from "react";
+import Dashboard from "./pages/Dashboard";
 
 function ProviderChild() {
-  const { dispatch, welcomeScreen } = useProvider(); // Now inside the component that PostProviders wraps
+  const { dispatch, welcomeScreen } = useProvider();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,6 +25,7 @@ function ProviderChild() {
         <Routes>
           <Route path="/" element={<Welcomepage />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       )}
     </BrowserRouter>

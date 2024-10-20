@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    height: auto;
+}
+
+.transaction{
+    background-image: linear-gradient(to right, var(--color-dark--0), var(--color-brown--2));
+    width: 360px;
+    height: 77px;
+    border-radius: 4rem;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
