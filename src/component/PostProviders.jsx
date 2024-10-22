@@ -10,6 +10,7 @@ const initialState = {
     userName:'',
     totalBalance:'',
     income:'',
+    showTransactionIcon: false,
   };
   const PostContext = createContext();
 
@@ -37,19 +38,25 @@ function PostProviders({children}) {
                 ...state,
                 income: action.payload
             }
+         case 'TOGGLE' :
+            return{
+                ...state,
+                showTransactionIcon: action.payload
+            }
           default:
             return state;
         }
       }
     
-      const [{ welcomeScreen, userName, totalBalance, income }, dispatch] = useReducer(reducer, initialState);
+      const [{ welcomeScreen, userName, totalBalance, income, showTransactionIcon }, dispatch] = useReducer(reducer, initialState);
     return (
         <PostContext.Provider value={{
           welcomeScreen,
           totalBalance, 
           userName,
           income,
-          dispatch
+          dispatch,
+          showTransactionIcon,
         }}>
             {children}
         </PostContext.Provider>

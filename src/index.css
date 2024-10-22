@@ -2,6 +2,13 @@
 @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
 @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
+@font-face {
+  font-family: 'BronoAceSc';
+  src: url('./assets/BrunoAceSC-Regular.ttf') format('truetype'); 
+  font-weight: normal; /* Specify the weight if needed */
+  font-style: normal; /* Specify the style if needed */
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -15,6 +22,7 @@
   --color-brown--1: #882828;
   --color-brown--2: #780000;
   --color-deep-pink: #F35959;
+  --color-deep-pink-2: #D44848;
   --color-light-green: #22D982;
   --color-dark--0: #000000;
   --color-light--grey: #5E5E5E;
@@ -34,7 +42,7 @@ html {
 
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: "BronoAceSc", sans-serif;
   color: var(--color-light--2);
   font-weight: 400;
   line-height: 1.6;

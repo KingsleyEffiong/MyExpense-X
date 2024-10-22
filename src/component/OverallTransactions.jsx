@@ -1,9 +1,13 @@
 import PieChat from './PieChat'
-import styles from './Transactions.module.css'
+import styles from './OverallTransactions.module.css'
+import DashboardHeader from './DashboardHeader'
+import RecentTransactions from './RecentTransactions'
 
 
 function Transactions() {
     return (
+        <section style={{width:'100%'}}>
+             <DashboardHeader />
         <div className={styles.container}>
             <ul className={styles.ul}>
                 <li className={styles.listItem} style={{borderBottom:'1px solid var(--color-brown--1)'}}>
@@ -38,6 +42,9 @@ function Transactions() {
             </ul>
             <PieChat />
         </div>
+        <h1 style={{color:'var(--color-light--grey)'}}>Recent transactions</h1>
+        <RecentTransactions />
+        </section>
     )
 }
 

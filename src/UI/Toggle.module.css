@@ -1,0 +1,31 @@
+.ul{
+    width: auto !important;
+    height: 63px;
+    border-radius: 5rem;
+    background-color: var(--color-white--1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.5rem 0.5rem;
+    list-style: none;
+}
+
+.listItem a{
+    color: var(--color-deep-pink-2);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.ul a:global(.active) {
+    background-color: var(--color-deep-pink-2);
+    border-radius: 5rem;
+    width: 133px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 5rem;
+    color: var(--color-white--1);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
