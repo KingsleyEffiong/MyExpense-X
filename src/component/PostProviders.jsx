@@ -17,6 +17,7 @@ const initialState = {
     userEarned:0,
     userSpent:0,
     userGained:0,
+    userIncomeData:null,
     showTransactionIcon: false,
     textLoading:false,
     isAnyTransaction:false,
@@ -67,6 +68,11 @@ function PostProviders({children}) {
               ...state,
               userBalance: action.payload
             }
+          case 'USERINCOMEDATA' :
+            return{
+              ...state,
+              userIncomeData: action.payload
+            }
           case 'USER_EARNED' :
             return{
               ...state,
@@ -112,7 +118,7 @@ function PostProviders({children}) {
         }
       }
     
-      const [{ welcomeScreen, userName, totalBalance, income, showTransactionIcon, textLoading, userBalance, userEarned, userSpent, userGained, isAnyTransaction, isRegistered, incomeInput, incomeCategory, incomeDescription }, dispatch] = useReducer(reducer, initialState);
+      const [{ welcomeScreen, userName, totalBalance, income, showTransactionIcon, textLoading, userBalance, userEarned, userSpent, userGained, isAnyTransaction, isRegistered, incomeInput, incomeCategory, incomeDescription, userIncomeData }, dispatch] = useReducer(reducer, initialState);
     return (
         <PostContext.Provider value={{
           welcomeScreen,
@@ -130,6 +136,7 @@ function PostProviders({children}) {
           userBalance,
           userEarned,
           userSpent,
+          userIncomeData,
           userGained,
           isAnyTransaction,
           isRegistered,

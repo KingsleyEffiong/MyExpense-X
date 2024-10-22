@@ -19,9 +19,8 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
                 const userSnapshot = await getDoc(userRef);
                 console.log(userSnapshot)
                 if(userSnapshot.exists()){
-                    dispatch({type:'USERBALANCE', payload:userSnapshot.data().totalBalance})
+                    dispatch({type:'USERBALANCE', payload:Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)})
                     dispatch({type:'USER_EARNED', payload:userSnapshot.data().income})
-                    console.log(userBalance, userEarned);
                 }
             }catch(err){
                 console.log(err)

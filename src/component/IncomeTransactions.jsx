@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import Toggle from '../UI/Toggle'
 import IncomeTransactionList from './IncomeTransactionList'
 import styles from './IncomeTransactions.module.css'
@@ -6,28 +6,29 @@ import PieChat from './PieChat'
 import { useProvider } from './PostProviders';
 
 function IncomeTransactions() {
-    // doc, getDoc, db, userBalance, userEarned, dispatch
-    const {userSpent, userGained} = useProvider();
-    // useEffect(() =>{
-    //     async function fetchUserIncome(){
-    //         const userId = localStorage.getItem('userId');
-    //         console.log(userId)
-    //         try{
-    //             const userRef = doc(db, 'user', userId);
-    //             const userSnapshot = await getDoc(userRef);
-    //             console.log(userSnapshot)
-    //             if(userSnapshot.exists()){
-    //                 dispatch({type:'USERBALANCE', payload:userSnapshot.data().totalBalance})
-    //                 dispatch({type:'USER_EARNED', payload:userSnapshot.data().income})
-    //                 console.log(userBalance, userEarned);
-    //             }
-    //         }catch(err){
-    //             console.log(err)
-    //         }
-    //     }
-    //     console.log('Working')
-    //     fetchUserIncome()
-    // },[])
+    const {userSpent, userGained, doc, db, getDoc, dispatch} = useProvider();
+    useEffect(() => {
+        async function incomeData() {
+            const userId = localStorage.getItem('userId');
+            console.log(userId);
+            try {
+                const userRef = doc(db, 'user', userId);
+                const userSnapshot = await getDoc(userRef);
+                if (userSnapshot.exists()) {
+                    const data = userSnapshot.data().incomes;
+                    const totalIncome = data.reduce((acc, curr) => {
+                        return acc + parseFloat(curr.income);
+                    }, 0);
+                   dispatch({type:'USER_GAINED', payload:totalIncome})
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        incomeData();
+    }, [doc, db, getDoc, dispatch]);
+    
+    
     
     return (
         <section style={{width:'100%'}}>
