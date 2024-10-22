@@ -8,6 +8,8 @@ import OverallTransactions from './component/OverallTransactions'
 import Dashboard from "./pages/Dashboard";
 import IncomeTransactions from "./component/IncomeTransactions";
 import ExpenseTransactions from "./component/ExpenseTransactions";
+import AddExpense from "./pages/AddExpense";
+import AddIncome from "./pages/AddIncome";
 
 function ProviderChild() {
   const { dispatch, welcomeScreen, isRegistered } = useProvider();
@@ -45,6 +47,8 @@ function ProviderChild() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/welcomepage" element={<Welcomepage />} />
+          <Route path="/form-expense" element={<AddExpense />} />
+          <Route path="/form-income" element={<AddIncome />} />
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Navigate replace to="overall" />} />
             <Route path="overall" element={<OverallTransactions />} />

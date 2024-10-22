@@ -10,7 +10,7 @@ function Form() {
     const {userName, dispatch, totalBalance, income, doc, setDoc, db, Timestamp, textLoading, isAnyTransaction} = useProvider();
 
     const generateUserId = function() {
-        let userId = localStorage.getItem('parentId');
+        let userId = localStorage.getItem('userId');
         if (!userId) {
             userId = `user${Date.now()}_${Math.random().toString(32).substring(2,9)}`;
             localStorage.setItem('userId', userId);

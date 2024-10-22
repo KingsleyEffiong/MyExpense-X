@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import {db} from '../Firebase.js';
-import { doc, setDoc, getDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 
 import PropTypes from "prop-types";
 PostProviders.propTypes = {
@@ -21,6 +21,10 @@ const initialState = {
     textLoading:false,
     isAnyTransaction:false,
     isRegistered:true,
+    incomeInput: '',
+    incomeCategory:'',
+    incomeDescription:'',
+
   };
   const PostContext = createContext();
 
@@ -88,12 +92,27 @@ function PostProviders({children}) {
               ...state,
               isRegistered: action.payload
             }
+          case 'INCOMEINPUT' :
+            return{
+              ...state,
+              incomeInput: action.payload
+            }
+          case 'INCOMECATEGORY' :
+            return{
+              ...state,
+              incomeCategory: action.payload
+            }
+          case 'INCOMEDESCRIPTION' :
+            return{
+              ...state,
+              incomeDescription: action.payload
+            }
           default:
             return state;
         }
       }
     
-      const [{ welcomeScreen, userName, totalBalance, income, showTransactionIcon, textLoading, userBalance, userEarned, userSpent, userGained, isAnyTransaction, isRegistered }, dispatch] = useReducer(reducer, initialState);
+      const [{ welcomeScreen, userName, totalBalance, income, showTransactionIcon, textLoading, userBalance, userEarned, userSpent, userGained, isAnyTransaction, isRegistered, incomeInput, incomeCategory, incomeDescription }, dispatch] = useReducer(reducer, initialState);
     return (
         <PostContext.Provider value={{
           welcomeScreen,
@@ -113,7 +132,12 @@ function PostProviders({children}) {
           userSpent,
           userGained,
           isAnyTransaction,
-          isRegistered
+          isRegistered,
+          incomeCategory, 
+          incomeInput,
+          incomeDescription,
+          updateDoc,
+          arrayUnion
         }}>
             {children}
         </PostContext.Provider>

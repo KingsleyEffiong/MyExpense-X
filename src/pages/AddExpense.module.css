@@ -1,0 +1,44 @@
+.container{
+    background-image: linear-gradient(to bottom, var(--color-dark--grey), var(--color-brown--2));
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.nav{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    color: var(--color-white--1);
+    padding: 3rem 2rem;
+    justify-content: space-around;
+}
+.section{
+    margin: 6rem 0;
+    padding: 0 4rem;
+}
+
+.input{
+    border: none;
+    font-size: 5rem;
+}
+
+.input::placeholder{
+    color: var(--color-white--1);
+    font-size: 5rem;
+}
+
+.button{
+    width: 120px;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 3rem;
+    background-color: var(--color-white--1);
+    color: var(--color-deep--grey);
+    font-family: inherit;
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 5rem 0;
+}
