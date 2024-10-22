@@ -16,13 +16,12 @@ function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <h1 style={{ color: 'var(--color-light--grey)' }}>Dashboard</h1>
       <div className={styles.transaction}></div>
       <Outlet />
       {/* Floating Action Button */}
       {overallRoute && (
           <>
-          <div className={styles.Ellipse}></div>
+          {/* <div className={styles.Ellipse}></div> */}
           <div
             style={{
               backgroundColor: 'var(--color-white--1)',
