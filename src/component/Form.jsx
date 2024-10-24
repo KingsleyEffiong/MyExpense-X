@@ -52,7 +52,7 @@ function Form() {
                 <input type="text" name="name" id="name" placeholder='Nik Name' value={userName} onChange={(e) =>dispatch({type:'USERNAME', payload:e.target.value})}/>
             </div>
             <div className={styles.flexColumn}>
-                <input type="text" name="balance" id="balance" placeholder='Deposit' value={totalBalance} onChange={(e) => dispatch({type: 'TOTALBALANCE', payload:e.target.value })}/>
+                <input type="text" name="balance" id="balance" placeholder='Net-worth' value={totalBalance} onChange={(e) => dispatch({type: 'TOTALBALANCE', payload:e.target.value })}/>
             </div>
             <div className={styles.flexColumn}>
                 <input type="text" name="income" id="income" placeholder='Income per month' value={income} onChange={(e) => dispatch({type:'INCOME', payload:e.target.value})}/>
