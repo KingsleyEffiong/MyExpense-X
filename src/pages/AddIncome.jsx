@@ -39,6 +39,9 @@ const generateUserId = function() {
                             isAnyTransaction:true
                         })
                         alert('Sent')
+                        dispatch({type:'INCOMEINPUT', payload:''})
+                        dispatch({type:'INCOMECATEGORY', payload:''})
+                        dispatch({type:'INCOMEDESCRIPTION', payload:''})
                         navigate('/dashboard/income')
                     }
                     else console.log('User does not exist')

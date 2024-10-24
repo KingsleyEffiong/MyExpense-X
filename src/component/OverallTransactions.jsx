@@ -13,22 +13,39 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
     useEffect(() =>{
         async function fetchUserBalanceIncome(){
             const userId = localStorage.getItem('userId');
-            console.log(userId)
             try{
                 const userRef = doc(db, 'user', userId);
                 const userSnapshot = await getDoc(userRef);
-                console.log(userSnapshot)
                 if(userSnapshot.exists()){
+                    const data = userSnapshot.data().transactions;
+                    const totalExpense = data.reduce((acc, curr) => {
+                        const expense = parseFloat(curr.expense);
+    
+                            if (!isNaN(expense)) {
+                                return acc + expense;
+                            }
+                            return acc;
+                        }, 0);
+        
+                    const totalIncome = data.reduce((acc, curr) => {
+                        const income = parseFloat(curr.income);
+    
+                            if (!isNaN(income)) {
+                                return acc + income;
+                            }
+                            return acc;
+                        }, 0);
                     dispatch({type:'USERBALANCE', payload:Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)})
                     dispatch({type:'USER_EARNED', payload:userSnapshot.data().income})
+                    dispatch({type:'USER_GAINED', payload:totalIncome})
+                    dispatch({type:'USER_SPENT', payload:totalExpense})
                 }
             }catch(err){
                 console.log(err)
             }
         }
-        console.log('Working')
         fetchUserBalanceIncome()
-    },[])
+    },[dispatch,doc, getDoc, db, userSpent, userGained,])
     return (
         <section style={{width:'100%'}}>
              <DashboardHeader />
@@ -41,7 +58,7 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
                 </svg>
                 <div className={styles.column}>
                     <span>Available balance</span>
-                    <span>{`$${userBalance}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userBalance)}`}</span>
                 </div>
                 </li>
 
@@ -51,7 +68,7 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
                 </svg>
                 <div className={styles.column}>
                     <span>Spent</span>
-                    <span>{`$${userSpent}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userSpent)}`}</span>
                 </div>
                 </li>
 
@@ -61,7 +78,7 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
                 </svg>
                 <div className={styles.column}>
                     <span>Gained</span>
-                    <span>{`$${userGained}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userGained)}`}</span>
                 </div>
                 </li>
                 <li className={styles.listItem}>
@@ -70,7 +87,7 @@ const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch
                 </svg>
                 <div className={styles.column}>
                     <span>Earned Per Month</span>
-                    <span>{`$${userEarned}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userEarned)}`}</span>
                 </div>
                 </li>
             </ul>

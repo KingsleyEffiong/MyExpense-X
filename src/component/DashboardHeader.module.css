@@ -13,6 +13,7 @@
     width: 4rem;
     height: 4rem;
     display: grid;
+    cursor: pointer;
     place-items: center;
     position: absolute;
     right: 3%;

@@ -10,6 +10,7 @@ import IncomeTransactions from "./component/IncomeTransactions";
 import ExpenseTransactions from "./component/ExpenseTransactions";
 import AddExpense from "./pages/AddExpense";
 import AddIncome from "./pages/AddIncome";
+import Setting from "./component/Setting";
 
 function ProviderChild() {
   const { dispatch, welcomeScreen, isRegistered } = useProvider();
@@ -52,6 +53,7 @@ function ProviderChild() {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Navigate replace to="overall" />} />
             <Route path="overall" element={<OverallTransactions />} />
+            <Route path="setting" element={<Setting />} />
             <Route path="income" element={<IncomeTransactions />} />
             <Route path="expense" element={<ExpenseTransactions />} />
           </Route>

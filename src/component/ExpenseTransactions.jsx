@@ -54,7 +54,7 @@ function ExpenseTransactions() {
                 </svg>
                 <div className={styles.column}>
                     <span>Spent</span>
-                    <span>{`${userSpent}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userSpent)}`}</span>
                 </div>
                 </li>
 
@@ -64,7 +64,7 @@ function ExpenseTransactions() {
                 </svg>
                 <div className={styles.column}>
                     <span>Gained</span>
-                    <span>{`${userGained}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userGained)}`}</span>
                 </div>
                 </li>
             </ul>

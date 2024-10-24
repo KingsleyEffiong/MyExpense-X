@@ -78,7 +78,7 @@ function ExpenseTransactionList() {
                                             </svg>
                                             </div>
                                         </div>
-                                        <span style={{ fontSize: '1.6rem', color: 'var(--color-white--1)' }}>-${incomeItem.expense}</span>
+                                        <span style={{ fontSize: '1.2rem', color: 'var(--color-white--1)' }}>{`-$${new Intl.NumberFormat('en-UK').format(incomeItem.expense)}`}</span>
                                     </div>
                                 ))}
                         </div>

@@ -1,0 +1,60 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background:var(--color-dark--0);
+    position: relative;
+}
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;;
+}
+
+.button{
+    width: 100%;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 3rem;
+    background-color: var(--color-white--1);
+    color: var(--color-deep--grey);
+    font-family: inherit;
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+.Ellipse12{
+position: fixed;
+width: 506.86px;
+height: 507.35px;
+right: -30rem;
+top: 158.9px;
+background: linear-gradient(180deg, rgba(231, 45, 45, 0.25) 0%, rgba(0, 133, 255, 0) 79.07%);
+transform: rotate(-25.21deg);
+border-radius: 100%;
+}
+
+
+.Ellipse13{
+position: fixed;
+width: 324px;
+height: 324.38px;
+left: 10%;
+top: 40%;
+background: linear-gradient(180deg, rgba(252, 210, 210, 0.31) 0%, rgba(226, 0, 0, 0) 76.29%);
+transform: rotate(133.32deg);
+border-radius: 100%;
+}
+.Ellipse14{
+position: fixed;
+width: 270px;
+height: 270px;
+left: -5rem;
+bottom: 2rem;
+background: linear-gradient(195.03deg, rgba(130, 11, 11, 0.59) 10.58%, rgba(29, 40, 142, 0) 75.89%);
+transform: rotate(-60.62deg);
+border-radius: 100%;
+}

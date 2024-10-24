@@ -10,7 +10,6 @@ function IncomeTransactions() {
     useEffect(() => {
         async function incomeData() {
             const userId = localStorage.getItem('userId');
-            console.log(userId);
             try {
                 const userRef = doc(db, 'user', userId);
                 const userSnapshot = await getDoc(userRef);
@@ -56,7 +55,7 @@ function IncomeTransactions() {
                 </svg>
                 <div className={styles.column}>
                     <span>Gained</span>
-                    <span>{`$${userGained}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userGained)}`}</span>
                 </div>
                 </li>
 
@@ -66,7 +65,7 @@ function IncomeTransactions() {
                 </svg>
                 <div className={styles.column}>
                     <span>Spent</span>
-                    <span>{`$${userSpent}.00`}</span>
+                    <span>{`$${new Intl.NumberFormat('en-UK').format(userSpent)}`}</span>
                 </div>
                 </li>
             </ul>
