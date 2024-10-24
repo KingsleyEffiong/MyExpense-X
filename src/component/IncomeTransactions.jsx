@@ -15,11 +15,26 @@ function IncomeTransactions() {
                 const userRef = doc(db, 'user', userId);
                 const userSnapshot = await getDoc(userRef);
                 if (userSnapshot.exists()) {
-                    const data = userSnapshot.data().incomes;
+                    const data = userSnapshot.data().transactions;
+                    const totalExpense = data.reduce((acc, curr) => {
+                        const expense = parseFloat(curr.expense);
+    
+                            if (!isNaN(expense)) {
+                                return acc + expense;
+                            }
+                            return acc;
+                        }, 0);
+        
                     const totalIncome = data.reduce((acc, curr) => {
-                        return acc + parseFloat(curr.income);
-                    }, 0);
+                        const income = parseFloat(curr.income);
+    
+                            if (!isNaN(income)) {
+                                return acc + income;
+                            }
+                            return acc;
+                        }, 0);
                    dispatch({type:'USER_GAINED', payload:totalIncome})
+                   dispatch({type:'USER_SPENT', payload:totalExpense})
                 }
             } catch (err) {
                 console.log(err);

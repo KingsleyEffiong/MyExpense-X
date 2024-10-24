@@ -1,6 +1,53 @@
+import { useNavigate } from 'react-router-dom';
+import { useProvider } from '../component/PostProviders';
 import Button from '../UI/Button'
 import styles from './AddExpense.module.css'
 function AddExpense() {
+    const {dispatch, expenseCategory, expenseInput, expenseDescription, Timestamp, updateDoc, getDoc, arrayUnion, db, doc} = useProvider();
+
+
+const generateUserId = function() {
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        userId = `user${Date.now()}_${Math.random().toString(32).substring(2,9)}`;
+        localStorage.setItem('userId', userId);
+    }
+    return userId;
+};
+    const navigate = useNavigate()
+    async function handleSubmit(){
+        if(!expenseInput.trim() || !expenseDescription.trim() || !expenseCategory.trim()) {
+            alert('Enter input')
+            return
+        }
+        if(!Number(expenseInput)) alert('Please enter a number')
+            else{
+                let userId = generateUserId();
+                const userRef = doc(db, 'user', userId);
+                try{
+                    const docSnapshot = await getDoc(userRef);
+                    console.log(docSnapshot)
+                    if(docSnapshot.exists()){
+                        await updateDoc(userRef, {
+                            transactions: arrayUnion({
+                                expense: expenseInput,
+                                timeOfTransaction: Timestamp.now(),
+                                isExpense:true,
+                                expenseCategory,
+                                expenseDescription,
+                            }),
+                            isAnyTransaction:true
+                        })
+                        alert('Sent')
+                        navigate('/dashboard/expense')
+                    }
+                    else console.log('User does not exist')
+                }
+                catch(err){
+                    console.log(err)
+                }
+        }
+           }
     return (
         <div className={styles.container}>
             <nav className={styles.nav}>
@@ -15,13 +62,13 @@ function AddExpense() {
                 <form action="">
                     <div className={styles.flexControl}>
                     <label htmlFor="" style={{color:'var(--color-white--1)', fontSize:'2rem'}}>How much?</label>
-                    <input type="text" name="" id="" className={styles.input}  placeholder='3'/>
+                    <input type="text" name="" id="" className={styles.input} value={expenseInput} onChange={(e) => dispatch({type:'EXPENSEINPUT', payload:e.target.value})}  placeholder='3'/>
                     </div>
                     <div className={styles.flexControl}>
-                    <input type="text" name="" id=""  placeholder='Description'/>
-                    <input type="text" name="" id=""  placeholder='Category '/>
+                    <input type="text" name="" id="" value={expenseDescription} onChange={(e) => dispatch({type:'EXPENSEDESCRIPTION', payload:e.target.value})} placeholder='Description'/>
+                    <input type="text" name="" id="" value={expenseCategory} onChange={(e) => dispatch({type:'EXPENSECATEGORY', payload:e.target.value})} placeholder='Category '/>
                     </div>
-                    <Button className={styles.button}>Submit</Button>
+                    <Button className={styles.button} onClick={handleSubmit}>Submit</Button>
                 </form>
             </section>
         </div>

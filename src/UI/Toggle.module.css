@@ -13,7 +13,7 @@
 
 .listItem a{
     color: var(--color-deep-pink-2);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
 }
 
@@ -26,6 +26,6 @@
     place-items: center;
     border-radius: 5rem;
     color: var(--color-white--1);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
 }

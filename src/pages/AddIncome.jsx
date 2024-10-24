@@ -23,20 +23,19 @@ const generateUserId = function() {
         if(!Number(incomeInput)) alert('Please enter a number')
             else{
                 let userId = generateUserId();
-                console.log("Generated User ID:", userId); // Add this for debugging
                 const userRef = doc(db, 'user', userId);
                 try{
                     const docSnapshot = await getDoc(userRef);
                     console.log(docSnapshot)
                     if(docSnapshot.exists()){
                         await updateDoc(userRef, {
-                            incomes: arrayUnion({
+                            transactions: arrayUnion({
                                 income: incomeInput,
                                 timeOfTransaction: Timestamp.now(),
-                                isGained:true,
+                                isIncome:true,
+                                incomeCategory,
+                                incomeDescription,
                             }),
-                            incomeDescription,
-                            incomeCategory,
                             isAnyTransaction:true
                         })
                         alert('Sent')
