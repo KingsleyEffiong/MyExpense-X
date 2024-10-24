@@ -31,7 +31,6 @@ function ProviderChild() {
       dispatch({ type: 'REGISTEREDUSER', payload: true });
     } else {
       dispatch({ type: 'REGISTEREDUSER', payload: false });
-      alert('No user found')
     }
   }, [dispatch]);
 
