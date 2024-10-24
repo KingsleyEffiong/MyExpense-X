@@ -42,7 +42,6 @@ function ProviderChild() {
         <Routes>
           <Route
             index
-            path="/"
             element={isRegistered ? <Navigate to="/dashboard" /> : <Navigate to="/welcomepage" />}
           />
           <Route path="/signup" element={<Signup />} />
