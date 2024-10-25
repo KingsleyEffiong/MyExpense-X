@@ -25,7 +25,6 @@ useEffect(() => {
                 const data = userSnapshot.data().transactions;
                 console.log(data)
                 if(data.length > 0){
-                    console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
                         const expense = parseFloat(curr?.expense);
                         return !isNaN(expense) ? acc + expense : acc;
@@ -35,11 +34,11 @@ useEffect(() => {
                         const income = parseFloat(curr?.income);
                         return !isNaN(income) ? acc + income : acc;
                     }, 0);
-    
                     dispatch({
                         type: 'USERBALANCE',
                         payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
                     });
+                    console.log(userGained, userSpent)
                     dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
                     dispatch({ type: 'USER_GAINED', payload: totalIncome });
                     dispatch({ type: 'USER_SPENT', payload: totalExpense });
