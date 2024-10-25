@@ -4,15 +4,16 @@ import DashboardHeader from './DashboardHeader'
 import RecentTransactions from './RecentTransactions'
 import { useEffect, useState } from 'react'
 import { useProvider } from './PostProviders'
-import {db} from '../Firebase.js';
-import { doc, getDoc } from "firebase/firestore";
+import LoadingScreen from './LoadingScreen'
+
 
 function OverallTransactions() {
-const {userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
+const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
 const [loading, setLoading] = useState(true);
 
+
 useEffect(() => {
-        async function fetchUserBalanceIncome() {
+    async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
         // setLoading(true);
         console.log(loading)
@@ -20,30 +21,27 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
-                 const data = userSnapshot.data().transactions || [];
-                console.log(data)
-
-                const totalExpense = data.reduce((acc, curr) => {
-                    const expense = parseFloat(curr?.expense);
-                    return !isNaN(expense) ? acc + expense : acc;
-                }, 0);
-
-                const totalIncome = data.reduce((acc, curr) => {
-                    const income = parseFloat(curr?.income);
-                    return !isNaN(income) ? acc + income : acc;
-                }, 0);
-
-                dispatch({
-                    type: 'USERBALANCE',
-                    payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
-                });
-                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
-                if(data.length === 0){
-                    setLoading(true);
-                    
+                const data = userSnapshot.data().transactions || [];
+                if(data.length > 0){
+                    const totalExpense = data.reduce((acc, curr) => {
+                        const expense = parseFloat(curr?.expense);
+                        return !isNaN(expense) ? acc + expense : acc;
+                    }, 0);
+    
+                    const totalIncome = data.reduce((acc, curr) => {
+                        const income = parseFloat(curr?.income);
+                        return !isNaN(income) ? acc + income : acc;
+                    }, 0);
+    
+                    dispatch({
+                        type: 'USERBALANCE',
+                        payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
+                    });
+                    dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                    dispatch({ type: 'USER_GAINED', payload: totalIncome });
+                    dispatch({ type: 'USER_SPENT', payload: totalExpense });
                 }
-                dispatch({ type: 'USER_GAINED', payload: totalIncome });
-                dispatch({ type: 'USER_SPENT', payload: totalExpense });
+                else return
             }
         } catch (err) {
             console.log(err);
@@ -54,8 +52,9 @@ useEffect(() => {
     }
     fetchUserBalanceIncome();
 }, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
+
 if(loading) {
-    return <p>Loading.......</p>
+    return <LoadingScreen />
 }
 
     return (
