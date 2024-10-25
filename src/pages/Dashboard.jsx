@@ -8,6 +8,32 @@ function Dashboard() {
   const location = useLocation();
   const currentRoute = location.pathname;
   const { showTransactionIcon, dispatch } = useProvider();
+  const [position, setPosition] = useState({ x: 100, y: 100 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    // Calculate offset between icon position and mouse position
+    setOffset({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      // Update position based on mouse movement
+      setPosition({
+        x: e.clientX - offset.x,
+        y: e.clientY - offset.y,
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   useEffect(() => {
     if (currentRoute !== '/dashboard/overall') setOverallRoute(false);
@@ -23,17 +49,22 @@ function Dashboard() {
           <>
           {/* <div className={styles.Ellipse}></div> */}
           <div
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+             onMouseUp={handleMouseUp}
             style={{
+              
               backgroundColor: 'var(--color-white--1)',
               width: '70px',
               height: '70px',
               position: 'fixed',
+              left: `${position.x}px`,
+              top: `${position.y}px`,
               bottom: '3%',
-              right: '1%',
               borderRadius: '100%',
               display: 'grid',
               placeItems: 'center',
-              cursor: 'pointer',
+              cursor: 'grab',
               zIndex: '1',
             }}
             onClick={() => dispatch({ type: 'TOGGLE', payload: true })}
