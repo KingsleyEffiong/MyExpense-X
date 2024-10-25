@@ -1,7 +1,7 @@
-// import PieChat from './PieChat'
+import PieChat from './PieChat'
 import styles from './OverallTransactions.module.css'
 import DashboardHeader from './DashboardHeader'
-// import RecentTransactions from './RecentTransactions'
+import RecentTransactions from './RecentTransactions'
 import { useEffect, useState } from 'react'
 import { useProvider } from './PostProviders'
 
@@ -14,13 +14,15 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
-        setLoading(true); // Ensure loading state is handled
+        // setLoading(true);
+        console.log(loading)
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
-                
+                console.log(data)
+
                 const totalExpense = data.reduce((acc, curr) => {
                     const expense = parseFloat(curr?.expense);
                     return !isNaN(expense) ? acc + expense : acc;
@@ -35,22 +37,23 @@ useEffect(() => {
                     type: 'USERBALANCE',
                     payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
                 });
-                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income || 0 });
+                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                if(data.length === 0){
+                    setLoading(true);
+                    
+                }
                 dispatch({ type: 'USER_GAINED', payload: totalIncome });
                 dispatch({ type: 'USER_SPENT', payload: totalExpense });
-            } else {
-                console.warn(`No document found for user with ID: ${userId}`);
             }
         } catch (err) {
-            console.error("Error fetching user data:", err);
-        } finally {
+            console.log(err);
+        }
+        finally{
             setLoading(false);
         }
     }
-
     fetchUserBalanceIncome();
-}, [dispatch, doc, getDoc, db, userSpent, userGained, loading]);
-
+}, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
 
 if(loading) {
     return <p>Loading.......</p>
@@ -101,10 +104,10 @@ if(loading) {
                 </div>
                 </li>
             </ul>
-            {/* <PieChat /> */}
+            <PieChat />
         </div>
         <h1 style={{color:'var(--color-light--grey)'}}>Recent transactions</h1>
-        {/* <RecentTransactions /> */}
+        <RecentTransactions />
         </section>
     )
 }
