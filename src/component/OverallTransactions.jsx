@@ -8,13 +8,13 @@ import { useProvider } from './PostProviders'
 
 function OverallTransactions() {
 const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
-const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(true);
 
 
 useEffect(() => {
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
-        setLoading(true);
+        // setLoading(true);
         console.log(loading)
         try {
             const userRef = doc(db, 'user', userId);
