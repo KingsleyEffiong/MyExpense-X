@@ -18,6 +18,7 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             setLoading(true);
+            console.log(loading)
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
                 console.log(data)
