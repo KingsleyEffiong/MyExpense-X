@@ -4,14 +4,15 @@ import DashboardHeader from './DashboardHeader'
 import RecentTransactions from './RecentTransactions'
 import { useEffect, useState } from 'react'
 import { useProvider } from './PostProviders'
-
+import {db} from '../Firebase.js';
+import { doc, getDoc } from "firebase/firestore";
 
 function OverallTransactions() {
-const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
+const {userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
 const [loading, setLoading] = useState(true);
 
-
 useEffect(() => {
+    let data;
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
         // setLoading(true);
@@ -20,7 +21,7 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
-                const data = userSnapshot.data().transactions || [];
+                 data = userSnapshot.data().transactions || [];
                 console.log(data)
 
                 const totalExpense = data.reduce((acc, curr) => {
@@ -54,7 +55,7 @@ useEffect(() => {
     }
     fetchUserBalanceIncome();
 }, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
-
+console.log(data)
 if(loading) {
     return <p>Loading.......</p>
 }
