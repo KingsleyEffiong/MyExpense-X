@@ -1,7 +1,7 @@
-import PieChat from './PieChat'
+// import PieChat from './PieChat'
 import styles from './OverallTransactions.module.css'
 import DashboardHeader from './DashboardHeader'
-import RecentTransactions from './RecentTransactions'
+// import RecentTransactions from './RecentTransactions'
 import { useEffect, useState } from 'react'
 import { useProvider } from './PostProviders'
 
@@ -101,10 +101,10 @@ if(loading) {
                 </div>
                 </li>
             </ul>
-            <PieChat />
+            {/* <PieChat /> */}
         </div>
         <h1 style={{color:'var(--color-light--grey)'}}>Recent transactions</h1>
-        <RecentTransactions />
+        {/* <RecentTransactions /> */}
         </section>
     )
 }
