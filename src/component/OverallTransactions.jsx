@@ -35,17 +35,17 @@ useEffect(() => {
                         return !isNaN(income) ? acc + income : acc;
                     }, 0);
     
-                    dispatch({
-                        type: 'USERBALANCE',
-                        payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
-                    });
-                    dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
                     dispatch({ type: 'USER_GAINED', payload: totalIncome });
                     dispatch({ type: 'USER_SPENT', payload: totalExpense });
                 }
                 else {
                     console.log("Issue loading data")
                 }
+                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                dispatch({
+                    type: 'USERBALANCE',
+                    payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
+                });
             }
         } catch (err) {
             console.log(err);

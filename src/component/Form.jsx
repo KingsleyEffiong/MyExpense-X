@@ -36,7 +36,7 @@ function Form() {
                         isAnyTransaction,
                         createdAt: Timestamp.now()
                     })
-                    navigate('/dashboard/setting')
+                    navigate('/dashboard')
                 }catch(err){
                     console.log(err)
                 }
