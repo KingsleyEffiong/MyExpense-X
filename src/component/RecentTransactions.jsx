@@ -19,16 +19,6 @@ function RecentTransactions() {
                     const data = userSnapshot.data();
                     dispatch({ type: 'USERALLDATA', payload: data });
                 }
-                // if(userSnapshot.data().transactions === undefined){
-                //     console.log(userSnapshot.data().transactions)
-                //     dispatch({
-                //         type: 'USERBALANCE',
-                //         payload: Number(userSnapshot.data().totalBalance)
-                //     });
-                //     dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
-                //     dispatch({ type: 'USER_GAINED', payload: userGained });
-                //     dispatch({ type: 'USER_SPENT', payload: userSpent });
-                // }
             } catch (err) {
                 console.log(err);
             } finally {

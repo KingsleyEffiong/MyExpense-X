@@ -35,9 +35,9 @@ function ExpenseTransactionList() {
 
     return (
         <div className={styles.container}>
-            {userExpenseData ? (
+            {userExpenseData && userExpenseData.transactions != undefined ? (
                 <>
-                    {userExpenseData.isAnyTransaction === false  ? (
+                    {userExpenseData.isAnyTransaction === false || userExpenseData.isAnyExpense === undefined ? (
                         <div className={styles.transaction}>
                             <h1 style={{ color: 'var(--color-white--1)' }}>No transaction yet</h1>
                         </div>

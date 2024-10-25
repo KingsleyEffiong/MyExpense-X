@@ -32,10 +32,11 @@ const generateUserId = function() {
                             transactions: arrayUnion({
                                 income: incomeInput,
                                 timeOfTransaction: Timestamp.now(),
-                                isIncome:true,
                                 incomeCategory,
+                                isIncome: true,
                                 incomeDescription,
                             }),
+                            isAnyIncome:true,
                             isAnyTransaction:true
                         })
                         alert('Sent')

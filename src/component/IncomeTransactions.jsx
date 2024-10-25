@@ -14,7 +14,7 @@ function IncomeTransactions() {
                 const userRef = doc(db, 'user', userId);
                 const userSnapshot = await getDoc(userRef);
                 if (userSnapshot.exists()) {
-                    const data = userSnapshot.data().transactions;
+                    const data = userSnapshot.data()?.transactions || [];
                     const totalExpense = data.reduce((acc, curr) => {
                         const expense = parseFloat(curr.expense);
     

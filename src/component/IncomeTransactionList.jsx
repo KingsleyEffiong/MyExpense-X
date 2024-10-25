@@ -35,9 +35,9 @@ function IncomeTransactionList() {
 
     return (
         <div className={styles.container}>
-            {userIncomeData ? (
+            {userIncomeData && userIncomeData.transactions != undefined ? (
                 <>
-                    {userIncomeData.isAnyTransaction === false ? (
+                    {userIncomeData.isAnyTransaction === false ||  userIncomeData.isAnyIncome === undefined? (
                         <div className={styles.transaction}>
                             <h1 style={{ color: 'var(--color-white--1)' }}>No transaction yet</h1>
                         </div>
