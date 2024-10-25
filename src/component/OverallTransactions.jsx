@@ -15,16 +15,12 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
-        // setLoading(true);
-        console.log(loading)
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
-                console.log(data)
                 if(data.length > 0){
-                    console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
                         const expense = parseFloat(curr?.expense);
                         return !isNaN(expense) ? acc + expense : acc;

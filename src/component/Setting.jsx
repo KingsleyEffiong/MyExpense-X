@@ -6,7 +6,7 @@ function Setting() {
     return (
         <div className={styles.container}>
             <h1 style={{color:'var(--color-white--1)', margin:'3rem 0 0 0'}}>Welcome back!</h1>
-            <h3 style={{color:'var(--color-white--1)'}}>Add your first transaction</h3>
+            <h3 style={{color:'var(--color-white--1)'}}>Do some transactions</h3>
             <div className={styles.Ellipse12}></div>
             <div className={styles.Ellipse13}></div>
             <div className={styles.Ellipse14}></div>
