@@ -39,7 +39,7 @@ const generateUserId = function() {
                             isAnyExpense:true,
                             isAnyTransaction:true
                         })
-                        alert('Sent')
+                        alert('Expenditure added')
                         dispatch({type:'EXPENSEINPUT', payload:''})
                         dispatch({type:'EXPENSECATEGORY', payload:''})
                         dispatch({type:'EXPENSEDESCRIPTION', payload:''})

@@ -39,7 +39,7 @@ const generateUserId = function() {
                             isAnyIncome:true,
                             isAnyTransaction:true
                         })
-                        alert('Sent')
+                        alert('Income added');
                         dispatch({type:'INCOMEINPUT', payload:''})
                         dispatch({type:'INCOMECATEGORY', payload:''})
                         dispatch({type:'INCOMEDESCRIPTION', payload:''})
