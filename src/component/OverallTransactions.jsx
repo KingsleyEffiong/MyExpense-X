@@ -23,6 +23,7 @@ useEffect(() => {
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
                 if(data.length > 0){
+                    console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
                         const expense = parseFloat(curr?.expense);
                         return !isNaN(expense) ? acc + expense : acc;
