@@ -21,8 +21,8 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
-                const data = userSnapshot.data().transactions;
-                console.log(data.length)
+                const data = userSnapshot.data().transactions || [];
+                console.log(data)
                 if(data.length > 0){
                     console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
@@ -35,17 +35,28 @@ useEffect(() => {
                         return !isNaN(income) ? acc + income : acc;
                     }, 0);
     
+                    dispatch({
+                        type: 'USERBALANCE',
+                        payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
+                    });
+                    dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
                     dispatch({ type: 'USER_GAINED', payload: totalIncome });
                     dispatch({ type: 'USER_SPENT', payload: totalExpense });
+                    return;
                 }
                 else {
                     console.log("Issue loading data")
                 }
-                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+            }
+            if(userSnapshot.data().transactions === undefined){
+                console.log(userSnapshot.data().transactions)
                 dispatch({
                     type: 'USERBALANCE',
-                    payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
+                    payload: Number(userSnapshot.data().totalBalance)
                 });
+                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                dispatch({ type: 'USER_GAINED', payload: userGained });
+                dispatch({ type: 'USER_SPENT', payload: userSpent });
             }
         } catch (err) {
             console.log(err);
@@ -106,10 +117,10 @@ if(loading) {
                 </div>
                 </li>
             </ul>
-            <PieChat />
+            {/* <PieChat /> */}
         </div>
         <h1 style={{color:'var(--color-light--grey)'}}>Recent transactions</h1>
-        <RecentTransactions />
+        {/* <RecentTransactions /> */}
         </section>
     )
 }
