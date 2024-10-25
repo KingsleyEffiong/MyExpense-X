@@ -18,6 +18,7 @@ function OverallTransactions() {
                 const userSnapshot = await getDoc(userRef);
 
                 if (userSnapshot.exists()) {
+                    console.log(userSnapshot.data())
                     const data = userSnapshot.data()?.transactions || [];
                     const totalBalance = userSnapshot.data()?.totalBalance || 0;
                     console.log('Fetched Data:', data);
