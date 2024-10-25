@@ -2,12 +2,13 @@ import PieChat from './PieChat'
 import styles from './OverallTransactions.module.css'
 import DashboardHeader from './DashboardHeader'
 import RecentTransactions from './RecentTransactions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useProvider } from './PostProviders'
 
 
 function OverallTransactions() {
 const {doc, getDoc, db, userBalance, userEarned, userSpent, userGained, dispatch} = useProvider();
+const [loading, setLoading] = useState(false);
 
 
 useEffect(() => {
@@ -16,7 +17,7 @@ useEffect(() => {
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
-
+            setLoading(true);
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
                 console.log(data)
@@ -42,9 +43,16 @@ useEffect(() => {
         } catch (err) {
             console.log(err);
         }
+        finally{
+            setLoading(false);
+        }
     }
     fetchUserBalanceIncome();
 }, [dispatch, doc, getDoc, db, userSpent, userGained]);
+
+if(loading) {
+    return <p>Loading.......</p>
+}
 
     return (
         <section style={{width:'100%'}}>
