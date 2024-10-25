@@ -21,7 +21,8 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
-                const data = userSnapshot.data().transactions || [];
+                const data = userSnapshot.data().transactions;
+                console.log(data.length)
                 if(data.length > 0){
                     console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
@@ -42,7 +43,9 @@ useEffect(() => {
                     dispatch({ type: 'USER_GAINED', payload: totalIncome });
                     dispatch({ type: 'USER_SPENT', payload: totalExpense });
                 }
-                else return
+                else {
+                    console.log("Issue loading data")
+                }
             }
         } catch (err) {
             console.log(err);
