@@ -19,6 +19,16 @@ function RecentTransactions() {
                     const data = userSnapshot.data();
                     dispatch({ type: 'USERALLDATA', payload: data });
                 }
+                // if(userSnapshot.data().transactions === undefined){
+                //     console.log(userSnapshot.data().transactions)
+                //     dispatch({
+                //         type: 'USERBALANCE',
+                //         payload: Number(userSnapshot.data().totalBalance)
+                //     });
+                //     dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                //     dispatch({ type: 'USER_GAINED', payload: userGained });
+                //     dispatch({ type: 'USER_SPENT', payload: userSpent });
+                // }
             } catch (err) {
                 console.log(err);
             } finally {
@@ -36,10 +46,9 @@ function RecentTransactions() {
     return (
         <div className={styles.container}>
             {
-                userAllData? (
+                userAllData && userAllData.transactions != undefined ? (
                     
-                    userAllData.transactions
-                    .sort((a, b) => b.timeOfTransaction.seconds - a.timeOfTransaction.seconds) // Sorting by timeOfTransaction in descending order
+                    userAllData.transactions?.sort((a, b) => b.timeOfTransaction.seconds - a.timeOfTransaction.seconds) // Sorting by timeOfTransaction in descending order
                     .map((transaction, index) => (
                         <div key={index} className={styles.transaction}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.88rem' }}>

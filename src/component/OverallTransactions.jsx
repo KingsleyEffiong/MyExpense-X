@@ -117,10 +117,10 @@ if(loading) {
                 </div>
                 </li>
             </ul>
-            {/* <PieChat /> */}
+            <PieChat />
         </div>
         <h1 style={{color:'var(--color-light--grey)'}}>Recent transactions</h1>
-        {/* <RecentTransactions /> */}
+        <RecentTransactions />
         </section>
     )
 }
