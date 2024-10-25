@@ -22,7 +22,7 @@ useEffect(() => {
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions;
-                console.log(data.length)
+                console.log(data)
                 if(data.length > 0){
                     console.log(data.length)
                     const totalExpense = data.reduce((acc, curr) => {
