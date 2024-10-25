@@ -14,11 +14,11 @@ const [loading, setLoading] = useState(false);
 useEffect(() => {
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
+        setLoading(true);
+        console.log(loading)
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
-            setLoading(true);
-            console.log(loading)
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
                 console.log(data)
