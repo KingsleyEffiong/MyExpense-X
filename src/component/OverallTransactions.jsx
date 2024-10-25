@@ -38,7 +38,7 @@ useEffect(() => {
                         type: 'USERBALANCE',
                         payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
                     });
-                    console.log(userGained, userSpent)
+                    console.log('jonas',userGained, userSpent)
                     dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
                     dispatch({ type: 'USER_GAINED', payload: totalIncome });
                     dispatch({ type: 'USER_SPENT', payload: totalExpense });
