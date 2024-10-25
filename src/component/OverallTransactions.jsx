@@ -20,7 +20,7 @@ useEffect(() => {
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
-            console.log(userSnapshot)
+            console.log(userSnapshot.data())
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions;
                 console.log(data)
