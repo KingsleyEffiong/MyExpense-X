@@ -12,8 +12,7 @@ const {userBalance, userEarned, userSpent, userGained, dispatch} = useProvider()
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-    let data;
-    async function fetchUserBalanceIncome() {
+        async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
         // setLoading(true);
         console.log(loading)
@@ -21,7 +20,7 @@ useEffect(() => {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
-                 data = userSnapshot.data().transactions || [];
+                 const data = userSnapshot.data().transactions || [];
                 console.log(data)
 
                 const totalExpense = data.reduce((acc, curr) => {
@@ -55,7 +54,6 @@ useEffect(() => {
     }
     fetchUserBalanceIncome();
 }, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
-console.log(data)
 if(loading) {
     return <p>Loading.......</p>
 }
