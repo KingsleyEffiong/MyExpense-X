@@ -41,9 +41,9 @@ function OverallTransactions() {
                             type: 'USERBALANCE',
                             payload: calculatedBalance
                         });
-                        dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income || 0 });
-                        dispatch({ type: 'USER_GAINED', payload: totalIncome });
-                        dispatch({ type: 'USER_SPENT', payload: totalExpense });
+                        dispatch({ type: 'USEREARNED', payload: userSnapshot.data().income });
+                        dispatch({ type: 'USERGAINED', payload: totalIncome });
+                        dispatch({ type: 'USERSPENT', payload: totalExpense });
                     } else {
                         console.log("No transactions found for the user.");
                     }
