@@ -36,7 +36,7 @@ function Form() {
                         isAnyTransaction,
                         createdAt: Timestamp.now()
                     })
-                    navigate('/dashboard/income')
+                    navigate('/dashboard/setting')
                 }catch(err){
                     console.log(err)
                 }
