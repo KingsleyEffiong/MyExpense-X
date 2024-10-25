@@ -14,15 +14,13 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
     async function fetchUserBalanceIncome() {
         const userId = localStorage.getItem('userId');
-        // setLoading(true);
-        console.log(loading)
+        setLoading(true); // Ensure loading state is handled
         try {
             const userRef = doc(db, 'user', userId);
             const userSnapshot = await getDoc(userRef);
             if (userSnapshot.exists()) {
                 const data = userSnapshot.data().transactions || [];
-                console.log(data)
-
+                
                 const totalExpense = data.reduce((acc, curr) => {
                     const expense = parseFloat(curr?.expense);
                     return !isNaN(expense) ? acc + expense : acc;
@@ -37,19 +35,22 @@ useEffect(() => {
                     type: 'USERBALANCE',
                     payload: Number(userSnapshot.data().totalBalance) + Number(userGained) - Number(userSpent)
                 });
-                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income });
+                dispatch({ type: 'USER_EARNED', payload: userSnapshot.data().income || 0 });
                 dispatch({ type: 'USER_GAINED', payload: totalIncome });
                 dispatch({ type: 'USER_SPENT', payload: totalExpense });
+            } else {
+                console.warn(`No document found for user with ID: ${userId}`);
             }
         } catch (err) {
-            console.log(err);
-        }
-        finally{
+            console.error("Error fetching user data:", err);
+        } finally {
             setLoading(false);
         }
     }
+
     fetchUserBalanceIncome();
-}, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
+}, [dispatch, doc, getDoc, db, userSpent, userGained, loading]);
+
 
 if(loading) {
     return <p>Loading.......</p>
