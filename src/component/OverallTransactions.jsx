@@ -49,7 +49,7 @@ useEffect(() => {
         }
     }
     fetchUserBalanceIncome();
-}, [dispatch, doc, getDoc, db, userSpent, userGained]);
+}, [dispatch, doc, getDoc, db, userSpent, userGained,loading]);
 
 if(loading) {
     return <p>Loading.......</p>
